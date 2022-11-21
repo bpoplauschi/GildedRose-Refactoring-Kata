@@ -64,3 +64,12 @@ final class TAFKAL80ETCItemQualityCalculator: ItemQualityCalculator {
 final class SulfurasItemQualityCalculator: ItemQualityCalculator {
     override func updateQuality() {}
 }
+
+final class ConjuredItemQualityCalculator: ItemQualityCalculator {
+    override func updateQuality() {
+        decreaseQuality()
+        decreaseQuality()
+        dayPass()
+        if sellDateHasPassed { decreaseQuality(); decreaseQuality() }
+    }
+}
