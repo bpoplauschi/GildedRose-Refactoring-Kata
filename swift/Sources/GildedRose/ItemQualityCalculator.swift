@@ -13,4 +13,20 @@ public class ItemQualityCalculator {
     }
     
     func updateQuality() {}
+    
+    func decrementSellIn() {
+        item.sellIn = item.sellIn - 1
+    }
+    
+    func incrementQualityIfPossible() {
+        if item.quality < 50 {
+            item.quality = item.quality + 1
+        }
+    }
+    
+    func decrementQualityIfPossible() {
+        if item.quality > 0 {
+            item.quality = item.quality - 1
+        }
+    }
 }

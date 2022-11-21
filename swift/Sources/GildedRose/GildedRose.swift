@@ -1,57 +1,37 @@
 final class AnyItemQualityCalculator: ItemQualityCalculator {
     override func updateQuality() {
-        if item.quality > 0 {
-            item.quality = item.quality - 1
-        }
-        
-        item.sellIn = item.sellIn - 1
-        
+        decrementQualityIfPossible()
+        decrementSellIn()
         if item.sellIn < 0 {
-            if item.quality > 0 {
-                item.quality = item.quality - 1
-            }
+            decrementQualityIfPossible()
         }
     }
 }
 
 final class AgedBrieItemQualityCalculator: ItemQualityCalculator {
     override func updateQuality() {
-        if item.quality < 50 {
-            item.quality = item.quality + 1
-        }
-        
-        item.sellIn = item.sellIn - 1
-        
+        incrementQualityIfPossible()
+        decrementSellIn()
         if item.sellIn < 0 {
-            if item.quality < 50 {
-                item.quality = item.quality + 1
-            }
+            incrementQualityIfPossible()
         }
     }
 }
 
 final class TAFKAL80ETCItemQualityCalculator: ItemQualityCalculator {
     override func updateQuality() {
+        incrementQualityIfPossible()
         if item.quality < 50 {
-            item.quality = item.quality + 1
-            
             if item.sellIn < 11 {
-                if item.quality < 50 {
-                    item.quality = item.quality + 1
-                }
+                incrementQualityIfPossible()
             }
-            
             if item.sellIn < 6 {
-                if item.quality < 50 {
-                    item.quality = item.quality + 1
-                }
+                incrementQualityIfPossible()
             }
         }
-        
-        item.sellIn = item.sellIn - 1
-        
+        decrementSellIn()
         if item.sellIn < 0 {
-            item.quality = item.quality - item.quality
+            item.quality = 0
         }
     }
 }
