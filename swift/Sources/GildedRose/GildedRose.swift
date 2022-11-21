@@ -1,5 +1,11 @@
 class ItemQualityCalculator {
-    func updateQuality(for item: Item) {
+    private let item: Item
+    
+    init(item: Item) {
+        self.item = item
+    }
+    
+    func updateQuality() {
         if item.name != "Aged Brie", item.name != "Backstage passes to a TAFKAL80ETC concert" {
             if item.quality > 0 {
                 if item.name != "Sulfuras, Hand of Ragnaros" {
@@ -58,7 +64,9 @@ public class GildedRose {
     }
     
     public func updateQuality() {
-        let calculator = ItemQualityCalculator()
-        items.forEach { calculator.updateQuality(for: $0) }
+        items.forEach {
+            let calculator = ItemQualityCalculator(item: $0)
+            calculator.updateQuality()
+        }
     }
 }
