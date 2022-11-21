@@ -1,4 +1,8 @@
-class ItemQualityCalculator {
+protocol ItemQualityCalculator {
+    func updateQuality()
+}
+
+final class AnyItemQualityCalculator: ItemQualityCalculator {
     private let item: Item
     
     init(item: Item) {
@@ -56,6 +60,29 @@ class ItemQualityCalculator {
     }
 }
 
+final class AgedBrieItemQualityCalculator: ItemQualityCalculator {
+    private let item: Item
+    
+    init(item: Item) {
+        self.item = item
+    }
+    
+    func updateQuality() {
+        if item.quality < 50 {
+            item.quality = item.quality + 1
+        }
+        
+        item.sellIn = item.sellIn - 1
+        
+        if item.sellIn < 0 {
+            if item.quality < 50 {
+                item.quality = item.quality + 1
+            }
+        }
+    }
+}
+
+
 public class GildedRose {
     var items: [Item]
 
@@ -64,8 +91,12 @@ public class GildedRose {
     }
     
     public func updateQuality() {
-        items.forEach {
-            let calculator = ItemQualityCalculator(item: $0)
+        items.forEach { item in
+            let calculator: ItemQualityCalculator
+            switch item.name {
+            case "Aged Brie": calculator = AgedBrieItemQualityCalculator(item: item)
+            default: calculator = AnyItemQualityCalculator(item: item)
+            }
             calculator.updateQuality()
         }
     }
