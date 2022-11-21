@@ -1,4 +1,4 @@
-@testable import GildedRose
+import GildedRose
 import XCTest
 
 class GildedRoseTests: XCTestCase {

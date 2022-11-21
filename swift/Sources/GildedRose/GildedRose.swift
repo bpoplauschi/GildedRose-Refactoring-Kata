@@ -1,5 +1,5 @@
 public class GildedRose {
-    var items: [Item]
+    public private(set) var items: [Item]
     private let calculatorFactory: (Item) -> ItemQualityCalculator
 
     public init(items: [Item], calculatorFactory: @escaping (Item) -> ItemQualityCalculator = itemQualityCalculatorFactory(item:)) {
