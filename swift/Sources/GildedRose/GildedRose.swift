@@ -10,27 +10,15 @@ final class AnyItemQualityCalculator: ItemQualityCalculator {
     }
     
     func updateQuality() {
-        if item.name != "Aged Brie", item.name != "Backstage passes to a TAFKAL80ETC concert" {
-            if item.quality > 0 {
-                if item.name != "Sulfuras, Hand of Ragnaros" {
-                    item.quality = item.quality - 1
-                }
-            }
+        if item.quality > 0 {
+            item.quality = item.quality - 1
         }
         
-        if item.name != "Sulfuras, Hand of Ragnaros" {
-            item.sellIn = item.sellIn - 1
-        }
+        item.sellIn = item.sellIn - 1
         
         if item.sellIn < 0 {
-            if item.name != "Aged Brie" {
-                if item.name != "Backstage passes to a TAFKAL80ETC concert" {
-                    if item.quality > 0 {
-                        if item.name != "Sulfuras, Hand of Ragnaros" {
-                            item.quality = item.quality - 1
-                        }
-                    }
-                }
+            if item.quality > 0 {
+                item.quality = item.quality - 1
             }
         }
     }
@@ -90,6 +78,16 @@ final class TAFKAL80ETCItemQualityCalculator: ItemQualityCalculator {
     }
 }
 
+final class SulfurasItemQualityCalculator: ItemQualityCalculator {
+    private let item: Item
+    
+    init(item: Item) {
+        self.item = item
+    }
+    
+    func updateQuality() {}
+}
+
 public class GildedRose {
     var items: [Item]
 
@@ -103,6 +101,7 @@ public class GildedRose {
             switch item.name {
             case "Aged Brie": calculator = AgedBrieItemQualityCalculator(item: item)
             case "Backstage passes to a TAFKAL80ETC concert": calculator = TAFKAL80ETCItemQualityCalculator(item: item)
+            case "Sulfuras, Hand of Ragnaros": calculator = SulfurasItemQualityCalculator(item: item)
             default: calculator = AnyItemQualityCalculator(item: item)
             }
             calculator.updateQuality()
