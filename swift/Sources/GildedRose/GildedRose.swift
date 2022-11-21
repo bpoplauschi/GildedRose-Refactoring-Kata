@@ -1,11 +1,5 @@
 final class AnyItemQualityCalculator: ItemQualityCalculator {
-    private let item: Item
-    
-    init(item: Item) {
-        self.item = item
-    }
-    
-    func updateQuality() {
+    override func updateQuality() {
         if item.quality > 0 {
             item.quality = item.quality - 1
         }
@@ -21,13 +15,7 @@ final class AnyItemQualityCalculator: ItemQualityCalculator {
 }
 
 final class AgedBrieItemQualityCalculator: ItemQualityCalculator {
-    private let item: Item
-    
-    init(item: Item) {
-        self.item = item
-    }
-    
-    func updateQuality() {
+    override func updateQuality() {
         if item.quality < 50 {
             item.quality = item.quality + 1
         }
@@ -43,13 +31,7 @@ final class AgedBrieItemQualityCalculator: ItemQualityCalculator {
 }
 
 final class TAFKAL80ETCItemQualityCalculator: ItemQualityCalculator {
-    private let item: Item
-    
-    init(item: Item) {
-        self.item = item
-    }
-    
-    func updateQuality() {
+    override func updateQuality() {
         if item.quality < 50 {
             item.quality = item.quality + 1
             
@@ -75,13 +57,7 @@ final class TAFKAL80ETCItemQualityCalculator: ItemQualityCalculator {
 }
 
 final class SulfurasItemQualityCalculator: ItemQualityCalculator {
-    private let item: Item
-    
-    init(item: Item) {
-        self.item = item
-    }
-    
-    func updateQuality() {}
+    override func updateQuality() {}
 }
 
 public class GildedRose {

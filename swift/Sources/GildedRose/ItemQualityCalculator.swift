@@ -5,6 +5,12 @@
 //  Created by Bogdan on 21.11.2022.
 //
 
-public protocol ItemQualityCalculator {
-    func updateQuality()
+public class ItemQualityCalculator {
+    let item: Item
+    
+    init(item: Item) {
+        self.item = item
+    }
+    
+    func updateQuality() {}
 }
