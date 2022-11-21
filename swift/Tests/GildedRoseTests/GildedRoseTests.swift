@@ -8,7 +8,8 @@ class GildedRoseTests: XCTestCase {
             "foo",
             "Aged Brie",
             "Backstage passes to a TAFKAL80ETC concert",
-            "Sulfuras, Hand of Ragnaros"]
+            "Sulfuras, Hand of Ragnaros"
+        ]
         let sellIns: [Int] = [-1, 0, 1, 10, 11, 12, 15]
         let qualities: [Int] = [-1, 0, 1, 10, 50, 51, 60]
         
