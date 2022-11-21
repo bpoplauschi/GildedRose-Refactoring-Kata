@@ -1,15 +1,5 @@
-public class GildedRose {
-    var items: [Item]
-
-    public init(items: [Item]) {
-        self.items = items
-    }
-    
-    public func updateQuality() {
-        items.forEach { updateItemQuality($0) }
-    }
-    
-    private func updateItemQuality(_ item: Item) {
+class ItemQualityCalculator {
+    func updateQuality(for item: Item) {
         if item.name != "Aged Brie", item.name != "Backstage passes to a TAFKAL80ETC concert" {
             if item.quality > 0 {
                 if item.name != "Sulfuras, Hand of Ragnaros" {
@@ -57,5 +47,18 @@ public class GildedRose {
                 }
             }
         }
+    }
+}
+
+public class GildedRose {
+    var items: [Item]
+
+    public init(items: [Item]) {
+        self.items = items
+    }
+    
+    public func updateQuality() {
+        let calculator = ItemQualityCalculator()
+        items.forEach { calculator.updateQuality(for: $0) }
     }
 }
