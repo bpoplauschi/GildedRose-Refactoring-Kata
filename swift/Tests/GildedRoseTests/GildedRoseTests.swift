@@ -269,7 +269,7 @@ class GildedRoseTests: XCTestCase {
                     
                     sut.updateQuality()
                     
-                    XCTAssertEqual(sut.itemDescription, expectedResults[expectedIndex])
+                    XCTAssertEqual(sut.itemDescription, expectedResults[expectedIndex], "Expected \(expectedResults[expectedIndex]) for item \(sut.items[0].name)")
                     expectedIndex += 1
                 }
             }
